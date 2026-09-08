@@ -29,6 +29,7 @@ To start a new operational repository `ops-<project>`:
 4. Add `sources/<channel>/` and `topics/` files only as material arrives — never in advance.
 
 To upgrade an existing repository: replace `AGENTS.md` with the current copy, follow the migration steps listed under each version in the changelog since the version you are on, and record the upgrade in your `CHANGELOG.md`.
+A step that only reformats (such as re-breaking prose by sentence) is its own commit with no content change; put its hash into `.git-blame-ignore-revs` and run `git config blame.ignoreRevsFile .git-blame-ignore-revs` once per clone — GitHub reads the file by itself — so that `git blame` keeps pointing at the sentence's real author.
 Both are tasks an AI agent can do on request.
 
 ## Rules of this repository

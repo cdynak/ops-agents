@@ -8,6 +8,14 @@ Versions 0.1.0–0.8.0 were developed in Polish inside the first operational rep
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade guidance in `README.md` extended after the first two real migrations: content-neutral commits go into `.git-blame-ignore-revs`, with the one-time `git config` a clone needs; the re-breaking commit stays free of any content change.
+
+### Fixed
+
+- The 0.7.0 → 0.8.0 migration step now names `sources/README.md` and the channel `README.md` files explicitly — they are READMEs, not archives, and were re-broken in practice.
+
 ## [0.9.0] - 2026-09-08
 
 First English edition, extracted into this repository as the canonical source of the format.
@@ -42,7 +50,7 @@ Migration 0.8.0 → 0.9.0: replace the Polish `AGENTS.md` with the English copy;
 - The two linking rules "never link to a non-existent file" and "never link into the future" merged into one; the rule "nothing created in advance" kept in one place only.
 - The "Migrations" section reduced to the step from the latest version; older steps moved next to their version entries in the changelog.
 
-Migration 0.7.0 → 0.8.0: enable *Strict line breaks* in Obsidian and disable format-on-save for `*.md` in editors; re-break `README.md`, `AGENTS.md`, `CHANGELOG.md`, `topics/` files and channel READMEs by sentence as a separate, content-neutral commit (its hash may go into `.git-blame-ignore-revs`); do not re-break archived files in `sources/`.
+Migration 0.7.0 → 0.8.0: enable *Strict line breaks* in Obsidian and disable format-on-save for `*.md` in editors; re-break `README.md`, `AGENTS.md`, `CHANGELOG.md`, `topics/` files, `sources/README.md` and every channel `README.md` by sentence as a separate, content-neutral commit (its changelog line goes into the next commit; its hash into `.git-blame-ignore-revs`); do not re-break archived files in `sources/`.
 
 ## [0.7.0] - 2026-07-28
 

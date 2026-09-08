@@ -41,6 +41,7 @@ Done → a note in [CHANGELOG.md](../CHANGELOG.md) and removal from this list.
 - [ ] If a subset is to be shared, choose explicit files outside the ignored directories or precise exceptions in `.gitignore`.
 - [ ] Adopt criteria for admitting configuration into the repository: no secrets, no local paths, no personal preferences.
 - [ ] Decide whether the format should ship editor configuration that enforces the line-break convention (`.editorconfig`, Prettier `proseWrap: "preserve"`, markdownlint without `MD013`).
+- [ ] Decide whether the format should ship a `.gitattributes` with `* text=auto eol=lf`: on Windows with `core.autocrlf=true` every commit prints "LF will be replaced by CRLF" warnings and touched files show up as end-of-line-only changes.
 
 ## This repository
 
