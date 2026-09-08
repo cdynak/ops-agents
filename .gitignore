@@ -1,0 +1,29 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Local editor and agent configuration
+.obsidian/
+.claude/
+.trash/
+
+# Working material: draft letters, rough notes, helper files.
+# When a draft becomes permanent -> topics/; when it gets sent -> sources/
+tmp/
+
+# Temporary and generated files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+secrets/
+credentials/
