@@ -1,0 +1,4 @@
+BLOCKING topics/note.md:7: link to a directory: ../topics
+BLOCKING topics/note.md:8: link to a directory: ../topics/
+health-check: 2 blocking issue(s)
+1

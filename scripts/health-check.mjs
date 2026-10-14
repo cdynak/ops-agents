@@ -8,7 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 const TYPES = new Set(["topic", "source-web", "source-thread", "source-document", "person", "decision"]);
 const STATUSES = new Set(["active", "draft", "closed", "archived"]);
-const SKIP_DIRS = new Set([".git", "tmp", ".obsidian", ".claude", "node_modules"]);
+const SKIP_DIRS = new Set([".git", "tmp", ".obsidian", ".claude", "node_modules", "tests"]);
 const CONTENT_DIRS = new Set(["topics", "sources"]);
 const TYPE_LIST = [...TYPES].sort().join(", ");
 const STATUS_LIST = [...STATUSES].sort().join(", ");

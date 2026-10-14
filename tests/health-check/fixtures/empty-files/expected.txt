@@ -1,0 +1,4 @@
+BLOCKING topics/blank.md: empty Markdown file
+BLOCKING topics/empty.md: empty Markdown file
+health-check: 2 blocking issue(s)
+1
