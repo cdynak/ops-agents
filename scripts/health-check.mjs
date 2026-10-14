@@ -19,6 +19,7 @@ const KEY_RE = /^([A-Za-z_][\p{L}\p{N}_-]*):\s*(.*?)\s*$/u;
 const SEMVER_RE = /^[0-9]+\.[0-9]+\.[0-9]+$/;
 const ISO_DATE_RE = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
 const SCHEME_RE = /^[a-zA-Z][a-zA-Z0-9+.-]*:/;
+const LINE_BREAK = /\r\n|[\n\v\f\r\x1c-\x1e\x85\u2028\u2029]/;
 const readText = (file) => new TextDecoder("utf-8", { fatal: false }).decode(fs.readFileSync(file));
 
 function statIs(file, method) {
@@ -34,8 +35,14 @@ function mdFiles(root) {
   const walk = (dir) => {
     let entries;
     try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { return; }
+    const isMd = (entry) => {
+      if (!entry.name.toLowerCase().endsWith(".md")) return false;
+      if (entry.isFile()) return true;
+      if (!entry.isSymbolicLink()) return false;
+      try { return fs.statSync(path.join(dir, entry.name)).isFile(); } catch { return false; }
+    };
     const pick = (pred) => entries.filter(pred).map((entry) => entry.name).sort();
-    for (const name of pick((entry) => entry.isFile() && entry.name.toLowerCase().endsWith(".md"))) out.push(path.join(dir, name));
+    for (const name of pick(isMd)) out.push(path.join(dir, name));
     for (const name of pick((entry) => entry.isDirectory() && !SKIP_DIRS.has(entry.name))) walk(path.join(dir, name));
   };
   walk(root);
@@ -43,7 +50,7 @@ function mdFiles(root) {
 }
 
 function parseFrontmatter(text) {
-  const lines = text.split(/\r\n|\r|\n/);
+  const lines = text.split(LINE_BREAK);
   if (lines[0]?.trim() !== "---") return null;
   const fm = {};
   for (const line of lines.slice(1)) {
@@ -56,7 +63,7 @@ function parseFrontmatter(text) {
 
 function visibleLines(text) {
   let inFence = false;
-  return text.split(/\r\n|\r|\n/).map((line) => {
+  return text.split(LINE_BREAK).map((line) => {
     if (!FENCE_RE.test(line)) return inFence ? "" : line.replace(INLINE_CODE_RE, "");
     inFence = !inFence;
     return "";
@@ -90,7 +97,7 @@ function isIsoDate(value) {
   // Date.UTC maps years 0-99 onto 1900-1999. setUTCFullYear keeps 0050 as year 50.
   const date = new Date(0);
   date.setUTCFullYear(year, month - 1, day);
-  return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
+  return year >= 1 && date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
 }
 
 function checkFrontmatter(rel, text, errors) {
