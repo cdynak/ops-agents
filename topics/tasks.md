@@ -26,6 +26,7 @@ Done → a note in [CHANGELOG.md](../CHANGELOG.md) and removal from this list.
 
 - [ ] Design a recurring consistency check covering: dead and disallowed links (directories, non-existent files); empty Markdown files created by Obsidian by accident; frontmatter validity, ISO dates and vocabulary values; `format_version` present in the header of `AGENTS.md` and the field table intact (the failure mode an editor formatter caused once); divergence between `sources/` and the synthesis in `topics/`; stale or contradictory canonical claims.
 - [ ] Split the check into a deterministic script and a periodic agent review that needs interpretation; decide where the script lives and how it runs.
+- [ ] In progress: the deterministic half as `scripts/health-check.py` (links, empty files, frontmatter vocabularies and dates, `format_version` in `AGENTS.md`), proposed in the `health-check-script` pull request.
 - [ ] Decide which findings block a commit and which only produce a report.
 
 ## Confidentiality classification
