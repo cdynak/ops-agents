@@ -1,0 +1,3 @@
+BLOCKING AGENTS.md: format_version missing from the frontmatter header
+health-check: 1 blocking issue(s)
+1

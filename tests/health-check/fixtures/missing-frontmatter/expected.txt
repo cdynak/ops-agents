@@ -1,0 +1,3 @@
+BLOCKING topics/note.md: missing or unterminated frontmatter
+health-check: 1 blocking issue(s)
+1

@@ -1,0 +1,3 @@
+BLOCKING AGENTS.md: format_version nine is not semver X.Y.Z
+health-check: 1 blocking issue(s)
+1
