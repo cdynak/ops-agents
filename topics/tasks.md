@@ -1,7 +1,7 @@
 ---
 type: topic
 status: active
-updated: 2026-09-08
+updated: 2026-10-20
 ---
 
 # Tasks
@@ -15,6 +15,8 @@ Done → a note in [CHANGELOG.md](../CHANGELOG.md) and removal from this list.
 - [ ] Decide how future versions reach operational repositories.
   Working assumption: each repository keeps its own copy of `AGENTS.md` and records the upgrade locally — no submodules, no remote dependency at run time; an agent does the upgrade on request.
 - [ ] Decide whether a repository may pin an older `format_version` indefinitely, and how a copy that drifted from the canonical file is detected (verbatim comparison is the intended check).
+- [ ] Consider an `ops init` command that scaffolds a new operational repository, and an `ops upgrade` command that replaces `AGENTS.md` with the canonical copy, walks the migration steps and reports a drifted copy.
+  Together they would answer the three items above in code instead of prose, and lower the cost of adopting the format for someone other than its author.
 
 ## De-versioning operational repositories
 
@@ -27,6 +29,7 @@ Done → a note in [CHANGELOG.md](../CHANGELOG.md) and removal from this list.
 - [ ] Design a recurring consistency check covering: dead and disallowed links (directories, non-existent files); empty Markdown files created by Obsidian by accident; frontmatter validity, ISO dates and vocabulary values; `format_version` present in the header of `AGENTS.md` and the field table intact (the failure mode an editor formatter caused once); divergence between `sources/` and the synthesis in `topics/`; stale or contradictory canonical claims.
 - [ ] Split the check into a deterministic script and a periodic agent review that needs interpretation; decide where the script lives and how it runs.
 - [ ] Decide which findings block a commit and which only produce a report.
+- [ ] Decide how the deterministic check reaches other adopters: a published Node.js package (`npx ops-lint` or similar), a pre-commit hook and a reusable GitHub Action, rather than a script each repository has to copy.
 
 ## Confidentiality classification
 
@@ -46,3 +49,14 @@ Done → a note in [CHANGELOG.md](../CHANGELOG.md) and removal from this list.
 ## This repository
 
 - [ ] Decide whether the format needs a short synthetic example repository (`examples/`) or whether the README's adoption guide is enough.
+  Argument for: people adopt a format by copying a working example more readily than by reading its specification.
+
+## Adoption beyond the first project
+
+- [ ] State in one line, both in the GitHub repository settings (description, topics) and at the top of `README.md`, who the format is for: projects whose main asset is agreed facts, correspondence and decisions rather than code.
+  The repository currently has no description or topics, and that niche is the main difference from the many memory tools aimed at codebases.
+- [ ] Reconsider the name: `ops-agents` reads as DevOps automation, which the format is not.
+- [ ] Package the recurring agent workflows as an Agent Skill (agentskills.io) or a plugin, so they behave the same across Claude Code, Codex and other harnesses instead of depending on each user's prompting.
+  Candidates: importing an email or a web page into `sources/` with the right frontmatter, updating `topics/` from new sources, drafting a reply that only a human sends, running the health check.
+- [ ] Later, once the CLI and the skill exist: an MCP server over an operational repository (read facts, append a source, query topics), so agents working outside a checkout, such as phone and chat apps, can use it too.
+- [ ] Find a first adopter beyond the original project, such as another civic initiative, an NGO or a community group, and record what they stumble on.
