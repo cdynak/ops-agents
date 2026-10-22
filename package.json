@@ -1,0 +1,13 @@
+{
+  "name": "ops-agents",
+  "version": "0.1.0",
+  "description": "The canonical home of the ops-* format: a way of running an operational repository (a Markdown knowledge base of agreed facts, correspondence and decision history) that works in Obsidian, on GitHub and with AI agents.",
+  "keywords": ["agents", "agents-md", "markdown", "obsidian", "knowledge-base", "ops"],
+  "license": "MIT",
+  "author": "Cezary Dynak",
+  "repository": { "type": "git", "url": "git+https://github.com/cdynak/ops-agents.git" },
+  "homepage": "https://github.com/cdynak/ops-agents#readme",
+  "bugs": { "url": "https://github.com/cdynak/ops-agents/issues" },
+  "bin": { "ops-agents": "bin/ops-agents.js" },
+  "files": ["AGENTS.md", "CHANGELOG.md", "CLAUDE.md", ".gitignore", "topics/tasks.md", "bin/"]
+}
